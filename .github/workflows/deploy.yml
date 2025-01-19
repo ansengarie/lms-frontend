@@ -1,30 +1,30 @@
 name: Deploy to Vercel
 
 on:
-  push:
-    branches:
-      - main  # Pastikan branch yang digunakan untuk deploy adalah `main`
+    push:
+        branches:
+            - main
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+    deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build Project
-        run: npm run build
+            - name: Build Project
+              run: npm run build
 
-      - name: Deploy to Vercel
-        run: |
-          npm install -g vercel
-          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+            - name: Deploy to Vercel
+              run: |
+                  npm install -g vercel
+                  vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
